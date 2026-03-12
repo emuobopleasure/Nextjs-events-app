@@ -1,7 +1,8 @@
 import { MongoClient } from "mongodb"
 
 export const connectDatabase = async () => {
-    const client = await MongoClient.connect('mongodb+srv://emuobopleasure:emuobopleasure@cluster0.prafqug.mongodb.net/?appName=Cluster0')
+    const url = process.env.MONGODB_URI
+    const client = await MongoClient.connect(url)
 
     return client
 }
