@@ -4,6 +4,7 @@ import { getFilteredEvents } from '@/helpers/api-util'
 // import { getFilteredEvents } from '@/dummy-data'
 import Button from '@/ui/button'
 import ErrorAlert from '@/ui/error-alert'
+import Head from 'next/head'
 import { useRouter } from 'next/router'
 import React, { Fragment } from 'react'
 
@@ -21,9 +22,19 @@ const FilteredEventsPage = (props) => {
     // const numYear = +filteredYear
     // const numMonth = +filteredMonth
 
+    const pageHeadData = (
+        <Head>
+            <title>Filtered Events</title>
+            <meta name="description" content={`All events for ${props.date.month}/${props.date.year}.`} />
+        </Head>
+    )
+
+    if ()
+
     if (props.hasError) {
         return (
             <Fragment>
+                {pageHeadData}
                 <ErrorAlert>
                     <p>Invalid filter. Please adjust your values!</p>
                 </ErrorAlert>
@@ -39,6 +50,7 @@ const FilteredEventsPage = (props) => {
     if (!filteredEvents || filteredEvents.length === 0) {
         return (
             <Fragment>
+                {pageHeadData}
                 <ErrorAlert>
                     <p>No events found for the chosen filter!</p>
                 </ErrorAlert>
@@ -53,6 +65,7 @@ const FilteredEventsPage = (props) => {
 
     return (
         <section>
+            {pageHeadData}
             <ResultsTitle date={date} />
             <EventList items={filteredEvents} />
         </section>
